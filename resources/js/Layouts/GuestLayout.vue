@@ -5,11 +5,12 @@ import { Link } from '@inertiajs/vue3';
 
 <template>
     <div
-        class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900"
+        class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-cyan-100 dark:bg-cyan-900"
     >
         <div>
             <Link href="/">
-                <ApplicationLogo class="w-20 h-20 fill-current text-gray-500" />
+                <ApplicationLogo class="w-20 h-20 fill-current text-cyan-900" />
+                <p class="font-medium text-center tracking-wide">{{ $page.props.appName }}</p>
             </Link>
         </div>
 

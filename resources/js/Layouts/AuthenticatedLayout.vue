@@ -16,7 +16,7 @@ const userMonogram = computed(() => {
 </script>
 
 <template>
-    <FlashMessage/>
+    <FlashMessage />
     <div>
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900 flex">
             <div class="flex flex-col w-full">
@@ -35,7 +35,9 @@ const userMonogram = computed(() => {
                     </div>
                     <Dropdown align="right" width="48">
                         <template #trigger>
-                            <div class="flex flex-shrink-0 items-center space-x-4 text-white cursor-pointer">
+                            <div
+                                class="flex flex-shrink-0 items-center space-x-4 text-white cursor-pointer"
+                            >
                                 <div class="flex flex-col items-end">
                                     <div class="text-md font-medium">
                                         {{ $page.props.auth.user.name }}

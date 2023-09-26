@@ -1,13 +1,13 @@
 <script setup>
 import { usePage } from '@inertiajs/vue3';
-import { ref, watch, computed } from 'vue';
+import { ref, watch } from 'vue';
 
 const page = usePage();
 const list = ref([]);
 
 watch(
     () => page.props.flash.message,
-    (newVal, _oldVal) => {
+    (newVal) => {
         if (newVal !== null) {
             page.props.flash.message = null;
             list.value.push({ message: newVal, success: page.props.flash.success });
@@ -21,7 +21,8 @@ watch(
     <div class="alert-wrapper">
         <TransitionGroup name="slide-fade" tag="div">
             <div
-                v-for="element in list"
+                v-for="(element, index) in list"
+                :key="index"
                 class="alert rounded"
                 :class="element.success ? 'bg-green-600' : 'bg-red-600'"
             >

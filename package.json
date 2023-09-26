@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "npm run lint && vite build",
         "lint": "eslint ./ --ext .vue,.js,.cjs --fix --ignore-path .gitignore"
     },
     "devDependencies": {

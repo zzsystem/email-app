@@ -6,13 +6,8 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import FileInput from '@/Components/FileInput.vue';
-import {
-    PaperAirplaneIcon,
-    EnvelopeIcon,
-    SignalIcon,
-    PaperClipIcon,
-} from '@heroicons/vue/24/solid';
-import { computed, ref } from 'vue';
+import { PaperAirplaneIcon, EnvelopeIcon, SignalIcon } from '@heroicons/vue/24/solid';
+import { computed } from 'vue';
 
 const page = usePage();
 const form = useForm({
@@ -95,6 +90,7 @@ const isAdmin = computed(() => page.props.auth.roles.includes('admin'));
                                 v-model:content="form.content"
                                 contentType="html"
                             ></QuillEditor>
+                            <InputError class="mt-2" :message="form.errors.content" />
                         </div>
                         <div class="w-full">
                             <PrimaryButton
