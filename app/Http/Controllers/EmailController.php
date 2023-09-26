@@ -16,7 +16,7 @@ class EmailController extends Controller
         if (!auth()->user()->hasRole('admin') && $request->hasFile('attachment')) {
             return back()->with([
                 'success' => false,
-                'message' => 'You are not allowed to send a file!',
+                'message' => __('mail.not_allowed'),
             ]);
         }
 
@@ -35,13 +35,13 @@ class EmailController extends Controller
         } catch (\Throwable $th) {
             return back()->with([
                 'success' => false,
-                'message' => 'Something went wrong!',
+                'message' => __('mail.not_success'),
             ]);
         }
 
         return back()->with([
             'success' => true,
-            'message' => 'Success!',
+            'message' => __('mail.success'),
         ]);
     }
 }
