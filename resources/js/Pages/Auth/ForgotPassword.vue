@@ -4,7 +4,8 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, useForm, usePage } from '@inertiajs/vue3';
+import { useLang } from '@/languages';
 
 defineProps({
     status: {
@@ -19,15 +20,16 @@ const form = useForm({
 const submit = () => {
     form.post(route('password.email'));
 };
+
+const { __ } = useLang(usePage().props.lang);
 </script>
 
 <template>
     <GuestLayout>
-        <Head title="Forgot Password" />
+        <Head :title="__('forgot_password')" />
 
         <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-            Forgot your password? No problem. Just let us know your email address and we will email
-            you a password reset link that will allow you to choose a new one.
+            {{ __('forgot_password_text') }}
         </div>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
@@ -36,7 +38,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" :value="__('email')" />
 
                 <TextInput
                     id="email"
@@ -56,7 +58,7 @@ const submit = () => {
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Email Password Reset Link
+                    {{ __('password_reset_link') }}
                 </PrimaryButton>
             </div>
         </form>

@@ -5,6 +5,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import FlashMessage from '@/Components/FlashMessage.vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
+import { useLang } from '@/languages';
 
 const page = usePage();
 const userMonogram = computed(() => {
@@ -13,6 +14,7 @@ const userMonogram = computed(() => {
         ? splittedName.shift().charAt(0).toUpperCase() + splittedName.pop().charAt(0).toUpperCase()
         : splittedName[0].charAt(0).toUpperCase();
 });
+const { __ } = useLang(page.props.lang);
 </script>
 
 <template>
@@ -55,9 +57,11 @@ const userMonogram = computed(() => {
                         </template>
 
                         <template #content>
-                            <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
+                            <DropdownLink :href="route('profile.edit')">{{
+                                __('profile')
+                            }}</DropdownLink>
                             <DropdownLink :href="route('logout')" method="post" as="button">
-                                Log Out
+                                {{ __('logout') }}
                             </DropdownLink>
                         </template>
                     </Dropdown>

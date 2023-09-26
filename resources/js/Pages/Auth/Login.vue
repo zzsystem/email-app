@@ -5,7 +5,8 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+import { useLang } from '@/languages';
 
 defineProps({
     canResetPassword: {
@@ -27,11 +28,13 @@ const submit = () => {
         onFinish: () => form.reset('password'),
     });
 };
+
+const { __ } = useLang(usePage().props.lang);
 </script>
 
 <template>
     <GuestLayout>
-        <Head title="Log in" />
+        <Head :title="__('login')" />
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
@@ -39,7 +42,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" :value="__('email')" />
 
                 <TextInput
                     id="email"
@@ -56,13 +59,13 @@ const submit = () => {
 
             <div class="mt-4">
                 <div class="flex justify-between">
-                    <InputLabel for="password" value="Password" />
+                    <InputLabel for="password" :value="__('password')" />
                     <Link
                         v-if="canResetPassword"
                         :href="route('password.request')"
                         class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                     >
-                        Forgot your password?
+                        {{ __('forgot_your_password') }}
                     </Link>
                 </div>
 
@@ -81,7 +84,9 @@ const submit = () => {
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
+                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{
+                        __('remember_me')
+                    }}</span>
                 </label>
             </div>
 
@@ -90,7 +95,7 @@ const submit = () => {
                     :href="route('register')"
                     class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                 >
-                    Register
+                    {{ __('register') }}
                 </Link>
 
                 <PrimaryButton
@@ -98,7 +103,7 @@ const submit = () => {
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Log in
+                    {{ __('login') }}
                 </PrimaryButton>
             </div>
         </form>

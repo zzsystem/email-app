@@ -8,6 +8,7 @@ import TextInput from '@/Components/TextInput.vue';
 import FileInput from '@/Components/FileInput.vue';
 import { PaperAirplaneIcon, EnvelopeIcon, SignalIcon } from '@heroicons/vue/24/solid';
 import { computed } from 'vue';
+import { useLang } from '@/languages';
 
 const page = usePage();
 const form = useForm({
@@ -25,14 +26,15 @@ const submit = () => {
 };
 
 const isAdmin = computed(() => page.props.auth.roles.includes('admin'));
+const { __ } = useLang(page.props.lang);
 </script>
 
 <template>
-    <Head title="Email" />
+    <Head :title="__('send_new_email')" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl leading-tight">Send new email</h2>
+            <h2 class="font-semibold text-xl leading-tight">{{ __('send_new_email') }}</h2>
         </template>
 
         <div class="py-12">
@@ -40,7 +42,7 @@ const isAdmin = computed(() => page.props.auth.roles.includes('admin'));
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <form class="p-6 text-gray-900 dark:text-gray-100" @submit.prevent="submit">
                         <div class="w-full mb-3">
-                            <InputLabel for="to" value="Email" />
+                            <InputLabel for="to" :value="__('email')" />
                             <TextInput
                                 id="to"
                                 type="email"
@@ -58,7 +60,7 @@ const isAdmin = computed(() => page.props.auth.roles.includes('admin'));
                             <InputError class="mt-2" :message="form.errors.to" />
                         </div>
                         <div class="w-full mb-3">
-                            <InputLabel for="subject" value="Subject" />
+                            <InputLabel for="subject" :value="__('subject')" />
                             <TextInput
                                 id="subject"
                                 type="text"
@@ -74,7 +76,7 @@ const isAdmin = computed(() => page.props.auth.roles.includes('admin'));
                             <InputError class="mt-2" :message="form.errors.subject" />
                         </div>
                         <div class="w-full mb-3" v-if="isAdmin">
-                            <InputLabel for="attachment" value="Attachment" />
+                            <InputLabel for="attachment" :value="__('attachment')" />
                             <FileInput
                                 id="attachment"
                                 type="file"
@@ -100,7 +102,7 @@ const isAdmin = computed(() => page.props.auth.roles.includes('admin'));
                                 <template #suffix>
                                     <PaperAirplaneIcon class="w-3 h-3 ml-2" />
                                 </template>
-                                Send
+                                {{ __('send') }}
                             </PrimaryButton>
                         </div>
                     </form>

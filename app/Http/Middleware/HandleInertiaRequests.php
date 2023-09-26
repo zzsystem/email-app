@@ -33,6 +33,7 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'appName' => config('app.name'),
+            'lang' => config('app.locale'),
             'auth' => [
                 'user' => $request->user()?->only('id', 'name', 'email'),
                 'roles' => $request->user()?->roles->pluck('name'),

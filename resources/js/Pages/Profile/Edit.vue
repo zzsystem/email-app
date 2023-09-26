@@ -3,7 +3,8 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import DeleteUserForm from './Partials/DeleteUserForm.vue';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, usePage } from '@inertiajs/vue3';
+import { useLang } from '@/languages';
 
 defineProps({
     mustVerifyEmail: {
@@ -13,14 +14,18 @@ defineProps({
         type: String,
     },
 });
+
+const { __ } = useLang(usePage().props.lang);
 </script>
 
 <template>
-    <Head title="Profile" />
+    <Head :title="__('profile')" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-white dark:text-white leading-tight">Profile</h2>
+            <h2 class="font-semibold text-xl text-white dark:text-white leading-tight">
+                {{ __('profile') }}
+            </h2>
         </template>
 
         <div class="py-12">
