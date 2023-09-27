@@ -45,7 +45,7 @@ const { __ } = useLang(page.props.lang);
                                         {{ $page.props.auth.user.name }}
                                     </div>
                                     <div class="text-md font-medium">
-                                        {{ $page.props.auth.roles[0] }}
+                                        {{ __($page.props.auth.roles[0]) }}
                                     </div>
                                 </div>
                                 <div

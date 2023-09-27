@@ -36,5 +36,7 @@
     "profile_information_info": "Frissítse fiókja profiladatait és e-mail címét.",
     "verify_email_alert": "Az Ön e-mail címe nem ellenőrzött.",
     "verify_email_resend": "Kattintson ide az ellenőrző e-mail újbóli elküldéséhez.",
-    "verify_email_sended": "Új ellenőrző linket küldtünk az Ön e-mail címér"
+    "verify_email_sended": "Új ellenőrző linket küldtünk az Ön e-mail címér",
+    "admin": "Adminisztrátor",
+    "user": "Felhasználó"
 }

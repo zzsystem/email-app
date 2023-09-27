@@ -36,5 +36,7 @@
     "profile_information_info": "Update your account's profile information and email address.",
     "verify_email_alert": "Your email address is unverified.",
     "verify_email_resend": "Click here to re-send the verification email.",
-    "verify_email_sended": "A new verification link has been sent to your email address."
+    "verify_email_sended": "A new verification link has been sent to your email address.",
+    "admin": "Administrator",
+    "user": "User"
 }
