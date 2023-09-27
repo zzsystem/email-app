@@ -4,7 +4,8 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, useForm, usePage } from '@inertiajs/vue3';
+import { useLang } from '@/languages';
 
 const form = useForm({
     password: '',
@@ -15,19 +16,21 @@ const submit = () => {
         onFinish: () => form.reset(),
     });
 };
+
+const { __ } = useLang(usePage().props.lang);
 </script>
 
 <template>
     <GuestLayout>
-        <Head title="Confirm Password" />
+        <Head :title="__('confirm_password')" />
 
         <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-            This is a secure area of the application. Please confirm your password before continuing.
+            {{ __('confirm_password_text') }}
         </div>
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" :value="__('password')" />
                 <TextInput
                     id="password"
                     type="password"
@@ -41,8 +44,12 @@ const submit = () => {
             </div>
 
             <div class="flex justify-end mt-4">
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Confirm
+                <PrimaryButton
+                    class="ml-4"
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                >
+                    {{ __('confirm') }}
                 </PrimaryButton>
             </div>
         </form>
